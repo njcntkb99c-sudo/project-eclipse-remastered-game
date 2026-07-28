@@ -1,0 +1,20 @@
+PROJECT ECLIPSE v8.1 — COMBAT FIX
+
+NON CANCELLARE NESSUN FILE.
+
+1. Aggiungi:
+   v8.1-content.js
+
+2. Sostituisci:
+   current-version.js
+
+CORREZIONI:
+- hitbox reali per gli attacchi;
+- controllo della distanza verticale;
+- nessun danno da nemici sopra o sotto Kael;
+- portata di boss e mini-boss ridotta;
+- preavviso visivo prima di ogni attacco;
+- invulnerabilità dopo un colpo aumentata a 1 secondo;
+- nemici lontani dalla telecamera inattivi;
+- separazione tra nemici sovrapposti;
+- danni iniziali riequilibrati.
