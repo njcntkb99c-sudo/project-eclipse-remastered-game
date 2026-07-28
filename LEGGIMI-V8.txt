@@ -1,0 +1,16 @@
+PROJECT ECLIPSE v8 — AGGIORNAMENTO INCREMENTALE
+
+NON CANCELLARE LA V7.
+
+AGGIUNGI:
+v8-content.js
+v8-ruins-world.png
+v8-npc.png
+v8-mini-boss.png
+v8-chest.png
+
+SOSTITUISCI SOLO:
+current-version.js
+
+NUOVO COMANDO:
+E = interagisci con NPC e scrigni

@@ -1,1 +1,1 @@
-window.PROJECT_ECLIPSE_VERSION_FILE="v7-content.js";const s=document.createElement("script");s.src=window.PROJECT_ECLIPSE_VERSION_FILE;document.body.appendChild(s);
+window.PROJECT_ECLIPSE_VERSION_FILE="v8-content.js";const s=document.createElement("script");s.src=window.PROJECT_ECLIPSE_VERSION_FILE;document.body.appendChild(s);
