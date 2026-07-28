@@ -1,21 +1,39 @@
 (() => {
 "use strict";
 const {canvas,ctx,$,keys,clamp,overlap}=window.EclipseCore;
-$("versionLabel").textContent="Reborn v9.0 · The Oath Cemetery";
+$("versionLabel").textContent="Reborn v9.1 · True 48px Tileset";
 const ui={menu:$("menu"),pause:$("pause"),difficulty:$("difficulty"),hpBar:$("hpBar"),hpText:$("hpText"),stBar:$("stBar"),stText:$("stText"),xpBar:$("xpBar"),levelText:$("levelText"),bossBar:$("bossBar"),bossPhase:$("bossPhase"),souls:$("souls"),deaths:$("deaths"),relics:$("relics"),combo:$("combo"),notice:$("notice"),continueGame:$("continueGame"),comboFlash:$("comboFlash")};
 
-const WORLD=10400,GROUND=455,checkpoints=[120,2600,5400,8000];
+let WORLD=10560,GROUND=444,checkpoints=[120,2592,5376,7968];
 let mode="menu",difficulty="normal",souls=0,deaths=0,checkpoint=0,cameraX=0,last=0,relicCount=0,level=1,xp=0,nextXp=65;
 let assetsReady=false,victory=false,noticeTimer=0,shake=0,comboCount=0,comboTimer=0,rainTime=0,fogTime=0;
-const images={},sources={sky:"v9-sky.png",far:"v9-far.png",mid:"v9-mid.png",near:"v9-near.png",fog:"v9-fog.png",kael:"v9-kael.png",enemy:"v9-enemy.png",boss:"v9-boss.png",tiles:"v9-tiles.png"};
+const images={},sources={sky:"v9-sky.png",far:"v9-far.png",mid:"v9-mid.png",near:"v9-near.png",fog:"v9-fog.png",kael:"v9-kael.png",enemy:"v9-enemy.png",boss:"v9-boss.png",tiles:"assets/tiles/cemetery_tiles_48.png"};
 const P={x:120,y:359,w:48,h:96,vx:0,vy:0,speed:290,jump:705,gravity:1900,onGround:false,baseHp:180,maxHp:180,hp:180,maxSt:120,st:120,facing:1,attack:0,attackCd:0,dodge:0,dodgeCd:0,block:0,inv:0,coyote:0,jumpBuffer:0,anim:0,skillCd:0,comboStep:0,comboWindow:0,baseDamage:40,land:0};
 
-const platforms=[[0,455,1250,100],[1330,455,820,100],[2230,455,1120,100],[3430,455,780,100],[4290,455,1320,100],[5690,455,980,100],[6750,455,1200,100],[8030,455,2370,100],[620,338,290,32],[1490,312,270,32],[1820,246,230,32],[2750,332,310,32],[3650,310,260,32],[4540,336,320,32],[5030,266,280,32],[6010,312,330,32],[7080,323,350,32],[8460,332,270,32],[9060,276,240,32]].map(a=>({x:a[0],y:a[1],w:a[2],h:a[3]}));
+let platforms=[];
+const FALLBACK_MAP={
+  worldWidth:10560,groundY:444,checkpoints:[120,2592,5376,7968],
+  enemySpawns:[912,1680,2928,3840,4752,6144,7248,8736],bossSpawn:9600,
+  platforms:[{"x":0,"y":444,"w":1200,"h":144,"topTile":0,"fillTile":8},{"x":1296,"y":444,"w":816,"h":144,"topTile":1,"fillTile":9},{"x":2208,"y":444,"w":1104,"h":144,"topTile":2,"fillTile":10},{"x":3408,"y":444,"w":768,"h":144,"topTile":4,"fillTile":11},{"x":4272,"y":444,"w":1296,"h":144,"topTile":5,"fillTile":12},{"x":5664,"y":444,"w":960,"h":144,"topTile":0,"fillTile":8},{"x":6720,"y":444,"w":1200,"h":144,"topTile":1,"fillTile":9},{"x":8016,"y":444,"w":2544,"h":144,"topTile":2,"fillTile":10},{"x":624,"y":336,"w":288,"h":48,"topTile":4,"fillTile":11},{"x":1488,"y":288,"w":288,"h":48,"topTile":5,"fillTile":12},{"x":1824,"y":240,"w":240,"h":48,"topTile":0,"fillTile":8},{"x":2736,"y":336,"w":336,"h":48,"topTile":1,"fillTile":9},{"x":3648,"y":288,"w":288,"h":48,"topTile":2,"fillTile":10},{"x":4512,"y":336,"w":336,"h":48,"topTile":4,"fillTile":11},{"x":4992,"y":240,"w":288,"h":48,"topTile":5,"fillTile":12},{"x":6000,"y":288,"w":336,"h":48,"topTile":0,"fillTile":8},{"x":7056,"y":336,"w":384,"h":48,"topTile":1,"fillTile":9},{"x":8448,"y":336,"w":288,"h":48,"topTile":2,"fillTile":10},{"x":9024,"y":288,"w":240,"h":48,"topTile":4,"fillTile":11}]
+};
+let MAP=FALLBACK_MAP;
+function applyMap(data){
+  MAP=data||FALLBACK_MAP;
+  WORLD=MAP.worldWidth||FALLBACK_MAP.worldWidth;
+  GROUND=MAP.groundY||FALLBACK_MAP.groundY;
+  checkpoints=MAP.checkpoints||FALLBACK_MAP.checkpoints;
+  platforms=(MAP.platforms||[]).map(p=>({x:p.x,y:p.y,w:p.w,h:p.h,topTile:p.topTile??0,fillTile:p.fillTile??8}));
+}
 const enemies=[],particles=[],embers=[];
 
-function loadAssets(done){let n=0,entries=Object.entries(sources);entries.forEach(([k,src])=>{let im=new Image();im.onload=()=>{images[k]=im;if(++n===entries.length){assetsReady=true;done()}};im.onerror=()=>notice("ERRORE ASSET: "+src);im.src=src})}
+function loadAssets(done){
+let pending=Object.keys(sources).length+1,finished=false;
+const complete=()=>{pending--;if(pending<=0&&!finished){finished=true;assetsReady=true;done()}};
+Object.entries(sources).forEach(([k,src])=>{let im=new Image();im.onload=()=>{images[k]=im;complete()};im.onerror=()=>{notice("ERRORE ASSET: "+src);complete()};im.src=src});
+fetch("maps/cemetery_01.json").then(r=>{if(!r.ok)throw new Error("map");return r.json()}).then(data=>{applyMap(data);complete()}).catch(()=>{applyMap(FALLBACK_MAP);notice("MAPPA JSON NON TROVATA: uso fallback");complete()});
+}
 function enemy(x,type="soldier"){let boss=type==="boss",hp=boss?(difficulty==="fractured"?1800:1250):135;return{type,x,y:GROUND-(boss?160:96),w:boss?112:64,h:boss?160:96,vx:0,vy:0,maxHp:hp,hp,damage:boss?28:15,phase:1,dir:-1,attackCd:0,telegraph:0,hurt:0,dead:false,onGround:false,anim:0}}
-function reset(){enemies.length=0;[900,1660,2920,3820,4760,6160,7260,8750].forEach(x=>enemies.push(enemy(x)));enemies.push(enemy(9620,"boss"))}
+function reset(){enemies.length=0;(MAP.enemySpawns||FALLBACK_MAP.enemySpawns).forEach(x=>enemies.push(enemy(x)));enemies.push(enemy(MAP.bossSpawn||FALLBACK_MAP.bossSpawn,"boss"))}
 function frag(){let loss=difficulty==="fractured"?Math.min(.7,deaths*.05):0;P.maxHp=Math.max(54,Math.round(P.baseHp*(1-loss)));P.hp=Math.min(P.hp||P.maxHp,P.maxHp)}
 function save(){localStorage.setItem("eclipseV9",JSON.stringify({difficulty,souls,deaths,checkpoint,relicCount,level,xp,nextXp}));ui.continueGame.disabled=false}
 function load(){try{let d=JSON.parse(localStorage.getItem("eclipseV9")||"null");if(!d)return false;difficulty=d.difficulty||"normal";souls=d.souls||0;deaths=d.deaths||0;checkpoint=d.checkpoint||0;relicCount=d.relicCount||0;level=d.level||1;xp=d.xp||0;nextXp=d.nextXp||65;ui.difficulty.value=difficulty;frag();return true}catch{return false}}
@@ -37,12 +55,27 @@ function updateFX(dt){for(let i=particles.length-1;i>=0;i--){let p=particles[i];
 function drawP(){if(P.inv>0&&Math.floor(P.inv*12)%2===0)return;let f=0;if(Math.abs(P.vx)>25)f=2+(Math.floor(P.anim*8)%2);if(!P.onGround)f=P.vy<0?4:5;if(P.attack>0)f=[0,6,7,8][P.comboStep]||6;if(P.dodge>0)f=9;if(P.block>0)f=10;if(P.skillCd>4.1)f=11;if(P.land>0)f=13;ctx.save();ctx.translate(P.x+32,P.y);ctx.scale(P.facing,1);ctx.drawImage(images.kael,f*64,0,64,96,-32,0,64,96);ctx.restore()}
 function drawE(e){if(e.telegraph>0){ctx.save();ctx.globalAlpha=.34+.24*Math.sin(performance.now()/45);ctx.fillStyle=e.type==="boss"?"#b979da":"#d45e73";ctx.fillRect(e.x-6,e.y-6,e.w+12,e.h+12);ctx.restore()}if(e.hurt>0)ctx.globalAlpha=.5;if(e.type==="boss")ctx.drawImage(images.boss,(e.phase-1)*112,0,112,160,e.x,e.y,112,160);else{let f=Math.floor(e.anim*6)%6;ctx.drawImage(images.enemy,f*64,0,64,96,e.x,e.y,64,96)}ctx.globalAlpha=1}
 function drawRain(){ctx.strokeStyle="rgba(180,210,225,.20)";ctx.lineWidth=1;for(let i=0;i<100;i++){let x=(i*137+rainTime*360)%1030-40,y=(i*83+rainTime*620)%590-25;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-5,y+15);ctx.stroke()}}
-function draw(){ctx.drawImage(images.sky,0,0);let a=(cameraX*.10)%960;ctx.drawImage(images.far,-a,0);ctx.drawImage(images.far,960-a,0);let b=(cameraX*.22)%960;ctx.drawImage(images.mid,-b,0);ctx.drawImage(images.mid,960-b,0);drawRain();ctx.save();if(shake>0){ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);shake*=.84;if(shake<.4)shake=0}ctx.translate(-cameraX,0);platforms.forEach((p,i)=>{let tx=(i%8)*16;for(let x=p.x;x<p.x+p.w;x+=16)for(let y=p.y;y<p.y+p.h;y+=16)ctx.drawImage(images.tiles,tx,0,16,16,x,y,16,16)});enemies.forEach(e=>{if(!e.dead)drawE(e)});drawP();particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life*2);ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,p.size,p.size)});embers.forEach(e=>{ctx.globalAlpha=Math.max(0,e.life*3);ctx.fillStyle="#76bfff";ctx.fillRect(e.x,e.y,4,4)});ctx.globalAlpha=1;ctx.restore();ctx.drawImage(images.near,0,0);let fogx=(fogTime*18)%960;ctx.globalAlpha=.55;ctx.drawImage(images.fog,-fogx,0);ctx.drawImage(images.fog,960-fogx,0);ctx.globalAlpha=1;if(victory){ctx.fillStyle="rgba(2,4,8,.84)";ctx.fillRect(0,0,960,540);ctx.textAlign="center";ctx.fillStyle="#f2e7dc";ctx.font="bold 46px Georgia";ctx.fillText("IL PATTO È STATO SPEZZATO",480,218);ctx.font="18px system-ui";ctx.fillStyle="#bfb3bc";ctx.fillText("Livello "+level+" · Anime "+souls,480,264)}}
+function draw(){ctx.drawImage(images.sky,0,0);let a=(cameraX*.10)%960;ctx.drawImage(images.far,-a,0);ctx.drawImage(images.far,960-a,0);let b=(cameraX*.22)%960;ctx.drawImage(images.mid,-b,0);ctx.drawImage(images.mid,960-b,0);drawRain();ctx.save();if(shake>0){ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);shake*=.84;if(shake<.4)shake=0}ctx.translate(-cameraX,0);platforms.forEach((p,i)=>{
+const ts=48,cols=8;
+for(let y=p.y;y<p.y+p.h;y+=ts){
+ for(let x=p.x;x<p.x+p.w;x+=ts){
+  const top=y===p.y;
+  let id=top?(p.topTile??(i%6)):(p.fillTile??(8+i%6));
+  if(top&&x===p.x)id=3;
+  else if(top&&x+ts>=p.x+p.w)id=4;
+  else if(!top&&x===p.x)id=16;
+  else if(!top&&x+ts>=p.x+p.w)id=17;
+  const sx=(id%cols)*ts,sy=Math.floor(id/cols)*ts;
+  const dw=Math.min(ts,p.x+p.w-x),dh=Math.min(ts,p.y+p.h-y);
+  ctx.drawImage(images.tiles,sx,sy,dw,dh,x,y,dw,dh);
+ }
+}
+});enemies.forEach(e=>{if(!e.dead)drawE(e)});drawP();particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life*2);ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,p.size,p.size)});embers.forEach(e=>{ctx.globalAlpha=Math.max(0,e.life*3);ctx.fillStyle="#76bfff";ctx.fillRect(e.x,e.y,4,4)});ctx.globalAlpha=1;ctx.restore();ctx.drawImage(images.near,0,0);let fogx=(fogTime*18)%960;ctx.globalAlpha=.55;ctx.drawImage(images.fog,-fogx,0);ctx.drawImage(images.fog,960-fogx,0);ctx.globalAlpha=1;if(victory){ctx.fillStyle="rgba(2,4,8,.84)";ctx.fillRect(0,0,960,540);ctx.textAlign="center";ctx.fillStyle="#f2e7dc";ctx.font="bold 46px Georgia";ctx.fillText("IL PATTO È STATO SPEZZATO",480,218);ctx.font="18px system-ui";ctx.fillStyle="#bfb3bc";ctx.fillText("Livello "+level+" · Anime "+souls,480,264)}}
 function hud(){ui.hpBar.style.width=P.hp/P.maxHp*100+"%";ui.hpText.textContent=Math.ceil(P.hp)+"/"+P.maxHp;ui.stBar.style.width=P.st/P.maxSt*100+"%";ui.stText.textContent=Math.ceil(P.st)+"/"+P.maxSt;ui.xpBar.style.width=xp/nextXp*100+"%";ui.levelText.textContent="Lv. "+level;ui.souls.textContent=souls;ui.deaths.textContent=deaths;ui.relics.textContent=relicCount;ui.combo.textContent=comboCount;let e=enemies.find(e=>e.type==="boss"&&!e.dead&&Math.abs(P.x-e.x)<1000);if(e){ui.bossBar.style.width=e.hp/e.maxHp*100+"%";ui.bossPhase.textContent="Custode · Fase "+e.phase+"/"+(difficulty==="fractured"?3:2)}else{ui.bossBar.style.width="0%";ui.bossPhase.textContent="—"}}
 function loop(t){let dt=Math.min(.033,(t-last)/1000||0);last=t;rainTime+=dt;fogTime+=dt;if(!assetsReady){ctx.fillStyle="#06080c";ctx.fillRect(0,0,960,540);ctx.fillStyle="#fff";ctx.textAlign="center";ctx.font="24px Georgia";ctx.fillText("Caricamento Project Eclipse Reborn...",480,270);requestAnimationFrame(loop);return}if(mode==="play"){updateP(dt);updateE(dt);updateFX(dt);hud()}draw();requestAnimationFrame(loop)}
 function press(k){keys.add(k);if(k==="Space")P.jumpBuffer=.12;if(k==="KeyJ")attack();if(k==="KeyK")dodge();if(k==="KeyL")block();if(k==="KeyQ")skill();if(k==="KeyP"){if(mode==="play"){mode="pause";ui.pause.classList.add("visible")}else if(mode==="pause"){mode="play";ui.pause.classList.remove("visible")}}}
 addEventListener("keydown",e=>{if(["Space","ArrowLeft","ArrowRight"].includes(e.code))e.preventDefault();press(e.code)});addEventListener("keyup",e=>keys.delete(e.code));
 document.querySelectorAll(".mobile button").forEach(b=>{let k=b.dataset.key;b.addEventListener("pointerdown",e=>{e.preventDefault();b.setPointerCapture(e.pointerId);press(k)});b.addEventListener("pointerup",()=>keys.delete(k));b.addEventListener("pointercancel",()=>keys.delete(k))});
 $("newGame").onclick=()=>start(false);$("continueGame").onclick=()=>start(true);$("resume").onclick=()=>{mode="play";ui.pause.classList.remove("visible")};$("quit").onclick=()=>{save();mode="menu";ui.pause.classList.remove("visible");ui.menu.classList.add("visible")};
-ui.continueGame.disabled=!localStorage.getItem("eclipseV9");reset();frag();hud();loadAssets(()=>notice("PROJECT ECLIPSE REBORN PRONTO"));requestAnimationFrame(loop);
+ui.continueGame.disabled=!localStorage.getItem("eclipseV9");applyMap(FALLBACK_MAP);reset();frag();hud();loadAssets(()=>{reset();notice("TILESET 48×48 CARICATO")});requestAnimationFrame(loop);
 })();

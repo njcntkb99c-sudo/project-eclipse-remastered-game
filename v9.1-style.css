@@ -1,15 +1,1 @@
-
-body{background:radial-gradient(circle at 50% 0,#151923 0,#07090d 58%)}
-.hud{background:linear-gradient(180deg,#181820,#0a0c12);border-color:#574b55;box-shadow:0 14px 60px rgba(0,0,0,.55)}
-.brand strong{font-family:Georgia,serif;font-size:21px;letter-spacing:.16em;color:#f0e5db}
-.brand span{color:#b6a8b2}
-.bars i{height:11px;border-color:#544b55;background:#1d1b22}
-.game-box{border-color:#574b55;box-shadow:0 25px 70px rgba(0,0,0,.45)}
-.panel{background:linear-gradient(180deg,rgba(23,23,31,.98),rgba(8,10,15,.98));border-color:#5b4e58}
-.panel h1{font-size:54px;color:#f1e5da;text-shadow:0 4px 24px rgba(255,139,65,.13)}
-#notice{border-color:#655764;background:rgba(8,9,13,.97)}
-
-/* v9.1 – True Tileset Integration */
-#versionLabel{color:#a9bd73}
-.game-box{image-rendering:pixelated}
-canvas{image-rendering:pixelated;image-rendering:crisp-edges}
+window.PROJECT_ECLIPSE_VERSION_FILE="v9.2-content.js";const css=document.createElement("link");css.rel="stylesheet";css.href="v9.2-style.css";document.head.appendChild(css);const s=document.createElement("script");s.src=window.PROJECT_ECLIPSE_VERSION_FILE;document.body.appendChild(s);

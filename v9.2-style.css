@@ -1,0 +1,26 @@
+PROJECT ECLIPSE — V9.1 TRUE TILESET INTEGRATION
+
+COME INSTALLARE
+1. Apri il repository GitHub del gioco.
+2. Carica TUTTI i file e le cartelle contenuti in questo pacchetto.
+3. Mantieni i vecchi file v9: non cancellarli.
+4. Consenti la sostituzione del solo file current-version.js.
+5. Fai Commit changes e attendi GitHub Pages.
+
+NUOVI FILE
+- v9.1-content.js
+- v9.1-style.css
+- assets/tiles/cemetery_tiles_48.png
+- maps/cemetery_01.json
+
+COSA CAMBIA
+- Tiles tecnici reali da 48×48 px.
+- Atlante PNG trasparente.
+- Mappa caricata da JSON, con fallback integrato.
+- Collisioni ancora basate sugli stessi rettangoli della mappa.
+- Nessun vecchio file viene eliminato.
+
+IMPORTANTE
+Apri il gioco tramite GitHub Pages o un server locale.
+Il caricamento JSON via fetch può non funzionare aprendo index.html direttamente con file://;
+in quel caso il gioco usa automaticamente la mappa fallback integrata.
