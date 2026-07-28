@@ -1,0 +1,10 @@
+COME FUNZIONERANNO GLI AGGIORNAMENTI
+
+La v7 è la nuova base definitiva.
+
+Per la v8:
+1. aggiungerai v8-content.js e i nuovi asset v8-...
+2. sostituirai soltanto current-version.js
+3. non cancellerai nessun file della v7
+
+Lo stesso metodo verrà usato per v9, v10 e versioni successive.
