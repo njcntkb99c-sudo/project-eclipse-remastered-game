@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 15/30
+VERSIONE: v9.3.5 — Healing Flask
+
+Introduce due fiasche curative. Premi H durante il gioco; si ricaricano ai checkpoint.
+
+CARICARE DOPO L'UPDATE 14.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.5): healing flask

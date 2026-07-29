@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 17/30
+VERSIONE: v9.3.7 — Damage Numbers
+
+Aggiunge numeri fluttuanti per i danni inflitti e ricevuti.
+
+CARICARE DOPO L'UPDATE 16.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.7): damage numbers

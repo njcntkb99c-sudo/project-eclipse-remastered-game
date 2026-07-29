@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 14/30
+VERSIONE: v9.3.4 — HUD Scaling
+
+Aggiunge HUD normale o compatto, selezionabile con F8 e memorizzato nel browser.
+
+CARICARE DOPO L'UPDATE 13.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.4): hud scaling

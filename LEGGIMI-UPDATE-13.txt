@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 13/30
+VERSIONE: v9.3.3 — Photo Mode
+
+Aggiunge la modalità foto con F2, nascondendo HUD e indicatori tecnici.
+
+CARICARE DOPO L'UPDATE 12.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.3): photo mode

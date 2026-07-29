@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 12/30
+VERSIONE: v9.3.2 — Controls Guide
+
+Aggiunge una guida comandi interna, apribile e chiudibile con F1.
+
+CARICARE DOPO L'UPDATE 11.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.2): controls guide

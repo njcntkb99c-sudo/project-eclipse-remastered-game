@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 16/30
+VERSIONE: v9.3.6 — Area Titles
+
+Mostra il nome delle quattro zone principali quando Kael entra in una nuova area.
+
+CARICARE DOPO L'UPDATE 15.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.6): area titles

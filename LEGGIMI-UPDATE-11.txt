@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 11/30
+VERSIONE: v9.3.1 — Runtime Hotfix
+
+Corregge lo scope delle opzioni accessibilità e della pausa automatica, evitando errori JavaScript all'avvio.
+
+CARICARE DOPO L'UPDATE 10.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.3.1): runtime hotfix

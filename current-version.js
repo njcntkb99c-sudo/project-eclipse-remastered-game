@@ -1,1 +1,1 @@
-window.PROJECT_ECLIPSE_VERSION_FILE="v9.2.5-content.js";const css=document.createElement("link");css.rel="stylesheet";css.href="v9.2.5-style.css";document.head.appendChild(css);const s=document.createElement("script");s.src=window.PROJECT_ECLIPSE_VERSION_FILE;document.body.appendChild(s);
+window.PROJECT_ECLIPSE_VERSION_FILE="v9.4.0-content.js";const css=document.createElement("link");css.rel="stylesheet";css.href="v9.4.0-style.css";document.head.appendChild(css);const s=document.createElement("script");s.src=window.PROJECT_ECLIPSE_VERSION_FILE;document.body.appendChild(s);
