@@ -1,0 +1,10 @@
+UPDATE 10/10 — v9.3.0 QA Build
+
+Aggiunge HUD tecnico attivabile con F3: FPS, posizione, nemici attivi, particelle e checkpoint. Include tutte le modifiche degli update precedenti.
+
+ISTRUZIONI
+1. Carica questo aggiornamento dopo l'Update 9.
+2. Rimani sul branch v9.2-tileset-expansion.
+3. Carica tutti i file estratti.
+4. Sostituisci soltanto current-version.js.
+5. Non eliminare le versioni precedenti.

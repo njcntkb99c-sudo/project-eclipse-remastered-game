@@ -1,0 +1,2 @@
+UPDATE 5/5 — v9.2.5 Stability Build
+Caricare dopo l'Update 4. Sostituire solo current-version.js.

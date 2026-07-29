@@ -1,0 +1,10 @@
+UPDATE 9/10 — v9.2.9 Accessibility
+
+Aggiunge F6 per movimento ridotto e F7 per contrasto alto. Le preferenze vengono salvate nel browser.
+
+ISTRUZIONI
+1. Carica questo aggiornamento dopo l'Update 8.
+2. Rimani sul branch v9.2-tileset-expansion.
+3. Carica tutti i file estratti.
+4. Sostituisci soltanto current-version.js.
+5. Non eliminare le versioni precedenti.

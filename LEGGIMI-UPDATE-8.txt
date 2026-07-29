@@ -1,0 +1,10 @@
+UPDATE 8/10 — v9.2.8 Boss Arena
+
+Aggiunge ingresso scenico del boss, risveglio a distanza controllata, esplosione di Essenza e telegraph più leggibile.
+
+ISTRUZIONI
+1. Carica questo aggiornamento dopo l'Update 7.
+2. Rimani sul branch v9.2-tileset-expansion.
+3. Carica tutti i file estratti.
+4. Sostituisci soltanto current-version.js.
+5. Non eliminare le versioni precedenti.
