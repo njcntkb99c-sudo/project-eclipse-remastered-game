@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 22/30
+VERSIONE: v9.4.2 — Hunt Counter
+
+Aggiunge il conteggio dei nemici sconfitti durante la sessione.
+
+CARICARE DOPO L'UPDATE 21.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.2): hunt counter

@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 29/30
+VERSIONE: v9.4.9 — Diagnostics
+
+Aggiunge un rapporto diagnostico in console, richiamabile con F5, utile durante i test su GitHub Pages.
+
+CARICARE DOPO L'UPDATE 28.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.9): diagnostics

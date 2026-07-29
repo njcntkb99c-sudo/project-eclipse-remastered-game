@@ -1,0 +1,8 @@
+PROJECT ECLIPSE — UPDATE 33
+VERSIONE: v9.5.3 — NPC Dialogues
+
+Introduce Mara, un NPC con dialoghi a scelta multipla e una prima quest.
+
+Caricare dopo l'Update 32 sul branch v9.2-tileset-expansion.
+Estrarre la ZIP, caricare tutti i file e sostituire soltanto current-version.js.
+Non eliminare le versioni precedenti.

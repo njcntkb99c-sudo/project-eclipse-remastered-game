@@ -1,0 +1,8 @@
+PROJECT ECLIPSE — UPDATE 32
+VERSIONE: v9.5.2 — Story Archive
+
+Aggiunge la sezione Storia accessibile con O, con voci bloccate e sbloccabili tramite schegge.
+
+Caricare dopo l'Update 31 sul branch v9.2-tileset-expansion.
+Estrarre la ZIP, caricare tutti i file e sostituire soltanto current-version.js.
+Non eliminare le versioni precedenti.

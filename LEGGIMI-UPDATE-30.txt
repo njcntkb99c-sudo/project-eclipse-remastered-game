@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 30/30
+VERSIONE: v9.5.0 — Release Candidate
+
+Consolida gli update 11–29, aggiunge identificazione RC e registrazione degli errori runtime nella console.
+
+CARICARE DOPO L'UPDATE 29.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.5.0): release candidate

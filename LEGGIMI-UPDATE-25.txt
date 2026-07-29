@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 25/30
+VERSIONE: v9.4.5 — Color Grades
+
+Aggiunge tre profili colore selezionabili con F10.
+
+CARICARE DOPO L'UPDATE 24.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.5): color grades

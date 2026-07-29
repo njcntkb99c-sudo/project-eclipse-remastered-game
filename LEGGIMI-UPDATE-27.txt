@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 27/30
+VERSIONE: v9.4.7 — Auto Quality
+
+Riduce automaticamente alcuni effetti quando il framerate resta basso e li riattiva quando torna stabile.
+
+CARICARE DOPO L'UPDATE 26.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.7): auto quality

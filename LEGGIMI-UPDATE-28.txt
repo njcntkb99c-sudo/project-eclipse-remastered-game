@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 28/30
+VERSIONE: v9.4.8 — Save Indicator
+
+Mostra brevemente una conferma visiva quando il salvataggio locale viene completato.
+
+CARICARE DOPO L'UPDATE 27.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.8): save indicator

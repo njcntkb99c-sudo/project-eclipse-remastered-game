@@ -1,0 +1,8 @@
+PROJECT ECLIPSE — UPDATE 31
+VERSIONE: v9.5.1 — World Map
+
+Aggiunge la mappa del mondo accessibile con M, con posizione di Kael e aree principali.
+
+Caricare dopo l'Update 30 sul branch v9.2-tileset-expansion.
+Estrarre la ZIP, caricare tutti i file e sostituire soltanto current-version.js.
+Non eliminare le versioni precedenti.

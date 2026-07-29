@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 26/30
+VERSIONE: v9.4.6 — Settings Panel
+
+Raccoglie in un pannello F4 tutte le opzioni rapide introdotte negli update precedenti.
+
+CARICARE DOPO L'UPDATE 25.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.6): settings panel

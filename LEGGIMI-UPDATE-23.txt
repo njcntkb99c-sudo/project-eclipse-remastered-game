@@ -1,0 +1,10 @@
+PROJECT ECLIPSE — UPDATE 23/30
+VERSIONE: v9.4.3 — Combo Milestones
+
+Premia le catene da 5, 10 e 20 colpi con anime bonus e un effetto visivo.
+
+CARICARE DOPO L'UPDATE 22.
+Branch: v9.2-tileset-expansion
+Carica tutti i file estratti e sostituisci soltanto current-version.js.
+Non eliminare nessun file delle versioni precedenti.
+Commit suggerito: feat(v9.4.3): combo milestones
