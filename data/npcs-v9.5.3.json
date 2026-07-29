@@ -1,0 +1,55 @@
+{
+  "npcs": [
+    {
+      "id": "mara",
+      "name": "Mara, Custode delle Candele",
+      "x": 1180,
+      "dialogue": {
+        "start": {
+          "text": "Le tombe ricordano ciò che i vivi scelgono di dimenticare. Cerchi il Custode?",
+          "choices": [
+            {
+              "label": "Chi era il Custode?",
+              "next": "warden"
+            },
+            {
+              "label": "Hai bisogno di aiuto?",
+              "next": "quest"
+            },
+            {
+              "label": "Lascia stare.",
+              "next": "end"
+            }
+          ]
+        },
+        "warden": {
+          "text": "Un cavaliere fedele. Troppo fedele. Quando il re spezzò il patto, lui continuò a difenderne le rovine.",
+          "choices": [
+            {
+              "label": "Capisco.",
+              "next": "end"
+            }
+          ]
+        },
+        "quest": {
+          "text": "Tre candele votive sono state spente nelle rovine. Riaccendile e tornerò a fidarmi dei viandanti.",
+          "choices": [
+            {
+              "label": "Accetto.",
+              "action": "accept_candles",
+              "next": "end"
+            },
+            {
+              "label": "Non ora.",
+              "next": "end"
+            }
+          ]
+        },
+        "end": {
+          "text": "Che l'Essenza non confonda i tuoi ricordi.",
+          "choices": []
+        }
+      }
+    }
+  ]
+}
