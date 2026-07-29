@@ -1,0 +1,10 @@
+UPDATE 7/10 — v9.2.7 Checkpoint Shrines
+
+Rende visibili i checkpoint come altari luminosi e ripristina una parte della vita e tutta la stamina quando vengono attivati.
+
+ISTRUZIONI
+1. Carica questo aggiornamento dopo l'Update 6.
+2. Rimani sul branch v9.2-tileset-expansion.
+3. Carica tutti i file estratti.
+4. Sostituisci soltanto current-version.js.
+5. Non eliminare le versioni precedenti.

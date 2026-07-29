@@ -1,0 +1,10 @@
+UPDATE 6/10 — v9.2.6 Cinematic Camera
+
+Aggiunge camera con anticipo nella direzione di movimento, inseguimento più morbido e reazione agli atterraggi.
+
+ISTRUZIONI
+1. Carica questo aggiornamento dopo l'Update 5.
+2. Rimani sul branch v9.2-tileset-expansion.
+3. Carica tutti i file estratti.
+4. Sostituisci soltanto current-version.js.
+5. Non eliminare le versioni precedenti.
