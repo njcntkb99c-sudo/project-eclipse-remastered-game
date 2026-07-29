@@ -1,0 +1,2 @@
+UPDATE 1/5 — v9.2.1 Lighting Pass
+Caricare dopo la v9.2. Sostituire solo current-version.js.
