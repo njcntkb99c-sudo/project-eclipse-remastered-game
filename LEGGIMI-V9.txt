@@ -1,28 +1,17 @@
-PROJECT ECLIPSE REBORN v9.0
-
-NON CANCELLARE I FILE DELLA V7 O DELLA V8.
-
-AGGIUNGI:
-- v9-content.js
-- v9-style.css
-- v9-sky.png
-- v9-far.png
-- v9-mid.png
-- v9-near.png
-- v9-fog.png
-- v9-kael.png
-- v9-enemy.png
-- v9-boss.png
-- v9-tiles.png
-
-SOSTITUISCI SOLO:
-- current-version.js
-
-La v9 rifà la resa visiva:
-- parallasse a più livelli;
-- nuova pixel art di Kael;
-- nuovi nemici e boss;
-- nebbia e pioggia;
-- torce e rovine;
-- HUD gotico;
-- effetti di attacco e schivata.
+{
+  "version": "9.2",
+  "tileSize": 48,
+  "tileAtlas": {
+    "path": "assets/tiles/cemetery_tiles_48_v92.png",
+    "columns": 16,
+    "rows": 8,
+    "tiles": 128
+  },
+  "propAtlas": {
+    "path": "assets/props/cemetery_props_48_v92.png",
+    "columns": 12,
+    "rows": 6,
+    "props": 72
+  },
+  "map": "maps/cemetery_02.json"
+}

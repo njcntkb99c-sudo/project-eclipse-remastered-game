@@ -13,3 +13,15 @@ body{background:radial-gradient(circle at 50% 0,#151923 0,#07090d 58%)}
 #versionLabel{color:#a9bd73}
 .game-box{image-rendering:pixelated}
 canvas{image-rendering:pixelated;image-rendering:crisp-edges}
+
+/* v9.2 — Tileset Expansion */
+#versionLabel{color:#b7c87b}
+.game-box::after{
+  content:"";
+  position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.62);
+}
+
+/* v9.2.1 — Lighting Pass */
+.game-box{background:#05070a}
+canvas{filter:contrast(1.06) saturate(.92)}
